@@ -1,5 +1,5 @@
 parseLines :: [String] -> [(Shape, Outcome)]
-parseLines lines = map (\l -> parseExpectedRound l) lines
+parseLines lines = map parseExpectedRound lines
 
 data Shape = Rock | Paper | Scissors deriving (Eq, Show)
 data Outcome = Loss | Draw | Win deriving (Eq, Show)
@@ -57,5 +57,5 @@ scoreOutcome x
 main = do 
     content <- readFile "sample-input-part01.txt"
     let rounds = parseLines (lines content)
-    let result = sum (map (\r -> scoreRound (playedRound r)) rounds)
-    putStrLn (show result)
+    let result = sum (map scoreRound . playedRound rounds)
+    printl result

@@ -1,5 +1,5 @@
 parseLines :: [String] -> [(Shape, Shape)]
-parseLines lines = map (\l -> parseRound l) lines
+parseLines lines = map parseRound lines
 
 data Shape = Rock | Paper | Scissors deriving Eq
 
@@ -32,5 +32,5 @@ scoreOutcome x
 main = do 
     content <- readFile "input-part01.txt"
     let rounds = parseLines (lines content)
-    let result = sum (map (\r -> scoreRound r) rounds)
-    putStrLn (show result)
+    let result = sum (map scoreRound rounds)
+    print result
