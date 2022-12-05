@@ -5,7 +5,7 @@ parseGroups :: [String] -> [(String, String, String)]
 parseGroups values =
     case values of 
         []                                  -> []
-        (first:(second:(third:rest)))       -> [(first, second, third)] ++ parseGroups rest
+        (first:(second:(third:rest)))       -> (first, second, third) : parseGroups rest
 
 itemTypePriority :: Char -> Int
 itemTypePriority c
@@ -19,6 +19,5 @@ badgeOfGroup (first, second, third) =
 main = do 
     content <- readFile "input-part01.txt"
     let groups = parseGroups(lines content)
-    let result = sum (map itemTypePriority (map badgeOfGroup groups))
-    putStrLn (show result)
-    
+    let result = sum (map itemTypePriority . badgeOfGroup groups)
+    print result
