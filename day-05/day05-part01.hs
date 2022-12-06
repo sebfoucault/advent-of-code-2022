@@ -1,6 +1,6 @@
 
 stackLines :: [String] -> [String]
-stackLines lines = takeWhile (\l -> not (isNumberLine l)) lines
+stackLines lines = takeWhile (not . isNumberLine l) lines
     where
         isNumberLine :: String -> Bool
         isNumberLine s = '1' `elem` s 
